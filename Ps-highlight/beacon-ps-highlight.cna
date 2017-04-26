@@ -1,0 +1,53 @@
+
+global(@avlist);
+
+# output for the ps command too
+set BEACON_OUTPUT_PS {
+
+	$handle = openf(script_resource("av_hips_executables.txt"));
+
+	while $line (readln($handle)) {
+		push(@avlist,$line);
+	}
+
+	local('$out $temp $name $ppid $pid $arch $user $session @ps');
+	$out .= "\cC[*]\o Process List with process highlighting of AV/HIPS process\n";
+	$out .= "\cC[*]\o AV/HIPS: \c4 RED \o \n\n";
+	$out .= " PID   PPID  Name                         Arch  Session     User\n";
+	$out .= "\cE ---   ----  ----                         ----  -------     -----\n";
+
+	foreach $temp (split("\n", ["$2" trim])) {
+		($name, $ppid, $pid, $arch, $user, $session) = split("\t", $temp);
+
+
+		# highlight AV processes in RED.
+		if(iff($name in @avlist,true,false)) {
+		push(@ps, %(pid => $pid, entry => "\c4 $[5]pid $[5]ppid $[28]name $[5]arch $[11]session $user \o"));
+
+		# highlight explorer , winlogon in BLUE 
+		} else if ($name eq "explorer.exe" || $name eq "winlogon.exe") {
+		push(@ps, %(pid => $pid, entry => "\c2 $[5]pid $[5]ppid $[28]name $[5]arch $[11]session $user \o"));
+
+		# highlight browsers processes in GREEN
+		} else if ($name eq "chrome.exe" || $name eq "firefox.exe" || $name eq "iexplore.exe") {
+		push(@ps, %(pid => $pid, entry => "\c3 $[5]pid $[5]ppid $[28]name $[5]arch $[11]session $user \o"));
+
+		} else {
+		push(@ps, %(pid => $pid, entry => " $[5]pid $[5]ppid $[28]name $[5]arch $[11]session $user"));
+
+		}
+
+	}
+
+	# sort the processes please
+	sort({ return $1['pid'] <=> $2['pid']; }, @ps);
+
+	# append to our outstring
+	foreach $temp (@ps) {
+
+		$out .= "$temp['entry'] \n";
+
+		}
+
+	return $out;
+}

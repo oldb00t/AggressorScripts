@@ -1,1 +1,1 @@
-CobaltStrike 3.x Scripts
+# CobaltStrike 3.x Scripts

@@ -37,9 +37,9 @@ include(script_resource("beacon-setup.cna"));
 include(script_resource("beacon-init.cna"));
 
 include(script_resource("Ps-highlight/beacon-ps-highlight.cna"));
-include(script_resource("Idletime/beacon-idletime.cna"));
-include(script_resource("Persistence/beacon-persistence.cna"));
-include(script_resource("ElevateKit/elevate.cna"));
+#include(script_resource("Idletime/beacon-idletime.cna"));
+#include(script_resource("Persistence/beacon-persistence.cna"));
+#include(script_resource("ElevateKit/elevate.cna"));
 
 
 

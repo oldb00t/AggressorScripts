@@ -13,7 +13,7 @@ use the **jacob-tools-loader.cna** to load all scripts into cobaltstrike at once
 This script also sets the local enviroment vars up to be used in scripts loaded later on.
 
 
-### PS-highlight
+#### PS-highlight
 Highlights selected processes from the ps command in beacon
 
 

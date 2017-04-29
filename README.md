@@ -12,6 +12,6 @@ This script also sets the local enviroment vars up to be used in scripts loaded 
 
 
 ### PS-highlight
-Highlights selected process results from the ps command in beacon
+Highlights selected processes from the ps command in beacon
 
 

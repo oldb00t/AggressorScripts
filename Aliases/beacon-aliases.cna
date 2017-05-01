@@ -80,13 +80,13 @@ alias quicksshportscan {
 
 # quickly run finduser
 alias finduser {
-        bpowershell_import($1, "PowerView/powerview.ps1");
+        bpowershell_import($1, script_resource("Aliases/scripts/PowerView/powerview.ps1"));
         bpowershell($1, "Invoke-UserHunter -UserName " . $2);
 }
 
 
 alias powerup {
-        bpowershell_import($1, "PowerUp/PowerUp.ps1");
+        bpowershell_import($1, script_resource("Aliases/scripts/PowerUp.ps1"));
         bpowershell($1, "Invoke-AllChecks");
 }
 
@@ -98,12 +98,12 @@ alias enablePSremoting {
 
 alias checkAv {
         blog($1,"Checking Installed Av and Malware Status.");
-        bpowershell_import($1, "Tools/T.ps1");
+        bpowershell_import($1, script_resource("Aliases/scripts/checkav.ps1"));
         bpowershell($1, "Get-LHSAntiVirusProduct");
 }
 
 alias monitorclipboard {
-        bpowershell_import($1, "Tools/clipboard-monitor.ps1");
+        bpowershell_import($1, script_resource("Aliases/scripts/clipboard-monitor.ps1"));
         bpowershell($1, "Start-ClipboardMonitor");
 }
 
@@ -114,20 +114,6 @@ alias getEstConnections {
 
 alias pb {
         openProcessBrowser($1);
-}
-
-
-
-
-#
-alias powerup {
-	bpowershell_import($1, script_resource("PowerUp.ps1"));
-	bpowershell($1, "Invoke-AllChecks");
-}
-
-sub powerup {
-	bpowershell_import($1, script_resource("PowerUp.ps1"));
-	bpowershell($1, "Invoke-AllChecks");
 }
 
 sub userhunter {

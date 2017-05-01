@@ -33,12 +33,13 @@ on beacon_output {
         }
 }
 
-include(script_resource("beacon-setup-conf.cna"));
+include(script_resource("Conf/beacon-setup-conf.cna"));
 
 include(script_resource("Links/gui-links.cna"));
+
 include(script_resource("Ps-highlight/beacon-ps-highlight.cna"));
 
-include(script_resource("beacon-aliases.cna"));
+include(script_resource("Aliases/beacon-aliases.cna"));
 
 #include(script_resource("Persistence/beacon-persistence.cna"));
 #include(script_resource("ElevateKit/elevate.cna"));

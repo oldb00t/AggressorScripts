@@ -17,3 +17,10 @@ This script also sets the local enviroment vars up to be used in scripts loaded 
 Highlights selected processes from the ps command in beacon
 
 
+### Aliases
+Loads various aliases into beacon
+
+### Conf
+sets a few defaults for scripts to be used later..
+
+

